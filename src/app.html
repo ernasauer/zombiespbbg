@@ -1,0 +1,24 @@
+<template>
+  <require from="resources/view-elements/loading-indicator"></require>
+  <require from="resources/view-elements/navigation-top"></require>
+  <require from="resources/view-elements/navigation-side"></require>
+  <require from="resources/view-elements/footer.html"></require>
+
+  <loading-indicator loading.bind="router.isNavigating || api.client.isRequesting"></loading-indicator>
+
+  <navigation-top router.bind="router"></navigation-top>
+
+  <navigation class="sidebar-nav navigation-pinned show-navigation">
+    <navigation-side></navigation-side>
+  </navigation>
+
+  <main>
+    <div class="container-fluid" id="content-container">
+      <div id="notification-container"></div>
+      <router-view></router-view>
+    </div>
+
+    <footer></footer>
+  </main>
+
+</template>

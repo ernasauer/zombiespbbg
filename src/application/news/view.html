@@ -1,0 +1,71 @@
+<template>
+  <section class="au-animate">
+    <div class="row">
+      <div class="col-lg-12">
+        <no-data message="The selected news entry is not available." visible.bind="!news"></no-data>
+
+        <div class="card" if.bind="news">
+          <div class="card-body">
+            <div class="news-card-header">
+              <a href="#/profile/view/${news.user.id}" class="pull-left">
+                <!-- Todo -->
+                <img alt="${news.user.username}" src="http://lr.local/img/avatar/${news.user.avatar}">
+              </a>
+              <h4><a href="#/news/view/${news.id}">${news.title}</a></h4>
+              <strong><a href="#/profile/view/${news.user.id}">${news.user.username}</a></strong>
+              <small class="text-muted"><i class="fa fa-clock-o"></i> ${news.created_at}</small>
+            </div>
+            <div class="card-text pt-1">${news.text}</div>
+          </div>
+
+          <div class="card-footer">
+            <div class="news-card-comment mb-1" if.bind="loggedInUser.isLoggedIn">
+              <a href="#/profile/view/${loggedInUser.user.id}" class="pull-left">
+                <!-- Todo: image path -->
+                <img alt="${loggedInUser.user.username}" src="http://lr.local/img/avatar/${loggedInUser.user.avatar}">
+              </a>
+
+              <div class="media-body">
+                <input class="form-control" placeholder="Write comment..." autofocus keyup.delegate="onKeyUp($event)"
+                       value.bind="comment">
+              </div>
+            </div>
+
+            <data-list controller.bind="dataListController" data.bind="comments" model.bind="model">
+              <div class="aurelia-animators au-stagger">
+                <div class="news-card-comment au-animate" repeat.for="item of comments">
+                  <a href="#/profile/view/${item.user.id}" class="pull-left">
+                    <!-- Todo -->
+                    <img alt="${item.user.username}" src="http://lr.local/img/avatar/${item.user.avatar}">
+                  </a>
+                  <div class="media-body">
+                    <a href="#/profile/view/${item.user.id}">${item.user.username}</a> ${item.text}
+                    <br>
+                    <small class="text-muted">${item.created_at}</small>
+                  </div>
+                </div>
+
+                <data-loader data-list-model.bind="model">
+                  <template replace-part="item-template">
+                    <div
+                      class="news-card-comment ${dataListModel.lastPage > 1 || dataListModel.loading ? '' : 'd-none'}">
+                      <a href="#" click.delegate="nextPage()"
+                         class="${dataListModel.currentPage != dataListModel.lastPage ? '' : 'd-none'}">
+                        Load more comments
+                      </a>
+                      <i class="fa fa-fw fa-spinner fa-spin ${dataListModel.loading ? '' : 'd-none'}"></i>
+                    </div>
+                  </template>
+                </data-loader>
+              </div>
+            </data-list>
+
+            <div class="news-card-comment" if.bind="loggedInUser.isLoggedIn">
+              <a href="">Comment...</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>

@@ -1,0 +1,37 @@
+<template>
+  <ul class="nav-container">
+    <li>
+      <a href="#/news" class="nav-item-toggle">
+        <i class="nav-item-icon fa fa-newspaper-o fa-fw"></i> News
+      </a>
+    </li>
+    <li>
+      <a href="#/page/story" class="nav-item-toggle">
+        <i class="nav-item-icon fa fa-file-text-o fa-fw"></i> Story
+      </a>
+    </li>
+    <li>
+      <a href="#/page/pricing" class="nav-item-toggle">
+        <i class="nav-item-icon fa fa-shopping-cart fa-fw"></i> Pricing
+      </a>
+    </li>
+  </ul>
+  <hr class="nav-separator" if.bind="loggedInUser.isLoggedIn">
+  <ul class="nav-container" if.bind="loggedInUser.isLoggedIn">
+    <li>
+      <a href="#/news" class="nav-item-toggle">
+        <i class="nav-item-icon fa fa-home fa-fw"></i> Settlement
+        <i class="nav-item-arrow fa fa-fw"></i>
+      </a>
+
+      <ul class="nav-container nav-sub-container">
+        <li>
+          <a href="#">Action 1</a>
+          <a href="#">Action 2</a>
+          <a href="#">Action 3</a>
+          <a href="#">Action 4</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</template>

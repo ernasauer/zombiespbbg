@@ -1,0 +1,78 @@
+<template>
+  <section class="au-animate">
+    <div class="row mb-1">
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="profile-image">
+              <!-- Todo -->
+              <img src="http://lr.local/img/avatar/${user.avatar}">
+            </div>
+            <div class="profile-info">
+              <h2>
+                ${user.username}
+              </h2>
+              <h4 if.bind="user.guild_id">Member of Guild</h4>
+              <small>
+                Joined on ${user.created_at}, Last update on ${user.updated_at}
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <table class="table small">
+          <tbody>
+          <tr>
+            <td>
+              <strong>3</strong> Settlements
+            </td>
+            <td>
+              <strong>200</strong> Troop Strength
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>3</strong> Fights Won
+            </td>
+            <td>
+              <strong>40 000</strong> Resources
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>0</strong> Artifacts
+            </td>
+            <td>
+              <strong>67 040</strong> Overall
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Private message</h4>
+
+            <p class="small">
+              Send a private message to ${user.username}
+            </p>
+
+            <div class="form-group">
+              <label>Subject</label>
+              <input type="email" class="form-control" placeholder="Message subject">
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea class="form-control" placeholder="Your message" rows="3"></textarea>
+            </div>
+            <button class="btn btn-primary btn-block">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
