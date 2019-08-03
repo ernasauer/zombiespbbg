@@ -1,0 +1,13 @@
+.profile-image {
+  float: left;
+
+  img {
+    border: $profile-image-border-size solid $profile-image-border-color;
+    height: 128px;
+    width: 128px;
+  }
+}
+
+.profile-info {
+  margin-left: 138px;
+}
